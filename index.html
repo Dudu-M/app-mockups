@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Design Mockups Hub</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+<header class="tabs">
+  <button class="tab red active" data-target="red">Red</button>
+  <button class="tab green" data-target="green">Green</button>
+  <button class="tab orange" data-target="orange">Orange</button>
+  <button class="tab blue" data-target="blue">Blue</button>
+</header>
+
+<main class="content">
+
+  <!-- RED -->
+  <section id="red" class="panel active">
+
+    <div class="subtabs">
+      <button class="subtab active" data-theme="light">Light</button>
+      <button class="subtab" data-theme="dark">Dark</button>
+    </div>
+
+    <!-- LIGHT -->
+    <div class="theme-content active" data-theme="light">
+      <iframe src="https://YOUR-LIGHT-RED-LINK"></iframe>
+
+      <!-- OR CODE -->
+      <!--
+      <pre><code>
+Light Red Theme Code
+      </code></pre>
+      -->
+    </div>
+
+    <!-- DARK -->
+    <div class="theme-content" data-theme="dark">
+      <iframe src="https://YOUR-DARK-RED-LINK"></iframe>
+    </div>
+
+  </section>
+
+  <!-- GREEN -->
+  <section id="green" class="panel">
+
+    <div class="subtabs">
+      <button class="subtab active" data-theme="light">Light</button>
+      <button class="subtab" data-theme="dark">Dark</button>
+    </div>
+
+    <div class="theme-content active" data-theme="light">
+      <iframe src="https://claude.ai/public/artifacts/be7d9481-f268-45e6-aca2-33297a4a9af6"></iframe>
+    </div>
+
+    <div class="theme-content" data-theme="dark">
+      <pre><code>
+/* Dark Green Theme */
+.green-dark {
+  background: #022c22;
+}
+      </code></pre>
+    </div>
+
+  </section>
+
+  <!-- ORANGE -->
+  <section id="orange" class="panel">
+    <div class="subtabs">
+      <button class="subtab active" data-theme="light">Light</button>
+      <button class="subtab" data-theme="dark">Dark</button>
+    </div>
+
+    <div class="theme-content active" data-theme="light">
+      <iframe src="https://YOUR-LIGHT-ORANGE-LINK"></iframe>
+    </div>
+
+    <div class="theme-content" data-theme="dark">
+      <iframe src="https://YOUR-DARK-ORANGE-LINK"></iframe>
+    </div>
+  </section>
+
+  <!-- BLUE -->
+  <section id="blue" class="panel">
+    <div class="subtabs">
+      <button class="subtab active" data-theme="light">Light</button>
+      <button class="subtab" data-theme="dark">Dark</button>
+    </div>
+
+    <div class="theme-content active" data-theme="light">
+      <iframe src="https://YOUR-LIGHT-BLUE-LINK"></iframe>
+    </div>
+
+    <div class="theme-content" data-theme="dark">
+      <iframe src="https://YOUR-DARK-BLUE-LINK"></iframe>
+    </div>
+  </section>
+
+</main>
+
+<script src="script.js"></script>
+</body>
+</html>
