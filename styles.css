@@ -119,6 +119,4 @@ code {
 
 .theme-content.active {
   display: block;
-  height: fit-content;
-  zoom: 0.6;
 }
