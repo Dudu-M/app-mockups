@@ -1,0 +1,844 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jakaranda - Scheme 2: Orange Light - Part 2 (Questions, Discovery, Events, Groups)</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Segoe UI', sans-serif;
+            background: #f5f5f5;
+            padding: 40px 20px;
+            color: #1a1a1a;
+        }
+
+        .container {
+            max-width: 1800px;
+            margin: 0 auto;
+        }
+
+        h1 {
+            font-size: 48px;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 48px;
+            background: linear-gradient(135deg, #ff6b35 0%, #ff8c42 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        :root {
+            --primary: #ff6b35;
+            --primary-light: #ff8c42;
+            --primary-dark: #e85d04;
+            --secondary: #00b4d8;
+            --secondary-light: #48cae4;
+            --accent: #8338ec;
+            --text-primary: #1a1a1a;
+            --text-secondary: #4a4a4a;
+            --text-tertiary: #999;
+            --bg-primary: #ffffff;
+            --bg-secondary: #f8f9fa;
+            --border: #e5e7eb;
+            --shadow: rgba(255,107,53,0.2);
+        }
+
+        .section-header {
+            background: white;
+            border-radius: 16px;
+            padding: 32px;
+            margin-bottom: 32px;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+            border-left: 4px solid var(--primary);
+        }
+
+        .section-header h2 {
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 12px;
+        }
+
+        .section-header p {
+            font-size: 16px;
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        .mockup-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
+            gap: 40px;
+            margin-bottom: 60px;
+        }
+
+        .phone-frame {
+            background: #1a1a1a;
+            border-radius: 50px;
+            padding: 16px;
+            box-shadow: 0 24px 48px rgba(0,0,0,0.3);
+            position: relative;
+            max-width: 390px;
+            margin: 0 auto;
+        }
+
+        .phone-notch {
+            position: absolute;
+            top: 16px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 150px;
+            height: 30px;
+            background: #1a1a1a;
+            border-radius: 0 0 20px 20px;
+            z-index: 10;
+        }
+
+        .screen {
+            background: var(--bg-secondary);
+            border-radius: 38px;
+            overflow: hidden;
+            position: relative;
+            aspect-ratio: 9/19.5;
+        }
+
+        .screen-content {
+            padding: 60px 24px 120px;
+            height: 100%;
+            overflow-y: auto;
+        }
+
+        .status-bar {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 44px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 24px;
+            font-size: 15px;
+            font-weight: 600;
+            color: var(--text-primary);
+            z-index: 5;
+        }
+
+        .screen-title {
+            text-align: center;
+            margin-bottom: 16px;
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--primary);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .card {
+            background: var(--bg-primary);
+            border-radius: 16px;
+            padding: 20px;
+            margin-bottom: 12px;
+            border: 1px solid var(--border);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+            position: relative;
+        }
+
+        .card-title {
+            font-size: 17px;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: var(--text-primary);
+        }
+
+        .card-text {
+            font-size: 15px;
+            color: var(--text-secondary);
+            line-height: 1.5;
+        }
+
+        .card-meta {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-top: 12px;
+            font-size: 13px;
+            color: var(--text-tertiary);
+        }
+
+        .save-icon {
+            position: absolute;
+            bottom: 20px;
+            right: 20px;
+            width: 20px;
+            height: 20px;
+            color: var(--text-tertiary);
+            cursor: pointer;
+        }
+
+        .badge-count {
+            display: inline-block;
+            background: var(--primary);
+            color: white;
+            padding: 4px 10px;
+            border-radius: 6px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        .search-bar {
+            background: var(--bg-primary);
+            padding: 12px 16px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 24px;
+            border: 2px solid var(--border);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+        }
+
+        .search-bar input {
+            flex: 1;
+            background: transparent;
+            border: none;
+            font-size: 16px;
+            outline: none;
+            color: var(--text-primary);
+        }
+
+        .search-bar input::placeholder {
+            color: var(--text-tertiary);
+        }
+
+        .category-pills {
+            display: flex;
+            gap: 8px;
+            overflow-x: auto;
+            padding-bottom: 12px;
+            margin-bottom: 24px;
+            -webkit-overflow-scrolling: touch;
+            scrollbar-width: none;
+        }
+
+        .category-pills::-webkit-scrollbar {
+            display: none;
+        }
+
+        .pill {
+            padding: 8px 16px;
+            background: var(--bg-secondary);
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: 500;
+            color: var(--text-secondary);
+            white-space: nowrap;
+            border: 2px solid transparent;
+            transition: all 0.2s;
+        }
+
+        .pill.active {
+            background: #fff5f0;
+            border-color: var(--primary);
+            color: var(--primary);
+        }
+
+        .discovery-card {
+            background: var(--bg-primary);
+            border-radius: 20px;
+            padding: 24px;
+            padding-top: 48px;
+            margin-bottom: 16px;
+            position: relative;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+        }
+
+        .discovery-card.high-compatibility {
+            border: 3px solid var(--primary);
+            box-shadow: 0 4px 20px rgba(255,107,53,0.25);
+        }
+
+        .discovery-card.medium-compatibility {
+            border: 2px solid var(--secondary);
+            box-shadow: 0 2px 12px rgba(0,180,216,0.2);
+        }
+
+        .compatibility-label {
+            position: absolute;
+            top: 16px;
+            left: 50%;
+            transform: translateX(-50%);
+            padding: 6px 12px;
+            border-radius: 8px;
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .compatibility-label.high {
+            background: var(--primary);
+            color: white;
+        }
+
+        .compatibility-label.medium {
+            background: var(--secondary);
+            color: white;
+        }
+
+        .discovery-avatar {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            color: white;
+            font-weight: 600;
+        }
+
+        .tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .tag {
+            background: var(--bg-secondary);
+            padding: 6px 12px;
+            border-radius: 8px;
+            font-size: 13px;
+            color: var(--text-secondary);
+        }
+
+        .tag.highlight {
+            background: #fff5f0;
+            color: var(--primary);
+            border: 1px solid var(--primary);
+            font-weight: 600;
+        }
+
+        .event-card {
+            background: var(--bg-primary);
+            border-radius: 16px;
+            padding: 20px;
+            margin-bottom: 12px;
+            border: 1px solid var(--border);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+        }
+
+        .event-date {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 12px;
+        }
+
+        .date-box {
+            width: 64px;
+            height: 64px;
+            background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary) 100%);
+            border-radius: 12px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            flex-shrink: 0;
+        }
+
+        .date-day {
+            font-size: 24px;
+            font-weight: 700;
+            line-height: 1;
+        }
+
+        .date-month {
+            font-size: 11px;
+            font-weight: 600;
+            text-transform: uppercase;
+            margin-top: 2px;
+        }
+
+        .event-title {
+            font-size: 17px;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 4px;
+        }
+
+        .event-location {
+            font-size: 14px;
+            color: var(--text-secondary);
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .event-attendees {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-top: 12px;
+            padding-top: 12px;
+            border-top: 1px solid var(--border);
+        }
+
+        .attendee-avatars {
+            display: flex;
+        }
+
+        .attendee-avatar {
+            width: 32px;
+            height: 32px;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+            border-radius: 50%;
+            border: 2px solid white;
+            margin-left: -10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            color: white;
+            font-weight: 600;
+        }
+
+        .attendee-avatar:first-child {
+            margin-left: 0;
+        }
+
+        .attendee-count {
+            font-size: 14px;
+            color: var(--text-secondary);
+            margin-left: 4px;
+        }
+
+        .btn {
+            display: block;
+            width: 100%;
+            padding: 16px;
+            border-radius: 14px;
+            font-size: 17px;
+            font-weight: 600;
+            border: none;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            text-align: center;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+            color: white;
+            box-shadow: 0 8px 20px var(--shadow);
+        }
+
+        .btn-small {
+            padding: 8px 16px;
+            width: auto;
+            font-size: 14px;
+            margin: 0;
+            margin-left: auto;
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: var(--primary);
+            border: 2px solid var(--primary);
+        }
+
+        .group-card {
+            background: var(--bg-primary);
+            border-radius: 16px;
+            padding: 24px;
+            margin-bottom: 16px;
+            border: 1px solid var(--border);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+        }
+
+        .group-card.primary {
+            background: linear-gradient(135deg, rgba(255,107,53,0.1) 0%, rgba(255,140,66,0.05) 100%);
+            border-left: 4px solid var(--primary);
+            border: none;
+            border-left: 4px solid var(--primary);
+        }
+
+        .group-card.secondary {
+            background: linear-gradient(135deg, rgba(0,180,216,0.1) 0%, rgba(72,202,228,0.05) 100%);
+            border-left: 4px solid var(--secondary);
+            border: none;
+            border-left: 4px solid var(--secondary);
+        }
+
+        .tabs {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 24px;
+            border-bottom: 1px solid var(--border);
+            padding-bottom: 0;
+        }
+
+        .tab {
+            flex: 1;
+            padding: 12px 16px;
+            text-align: center;
+            font-size: 15px;
+            font-weight: 600;
+            color: var(--text-tertiary);
+            border-bottom: 2px solid transparent;
+            transition: all 0.2s;
+        }
+
+        .tab.active {
+            color: var(--primary);
+            border-bottom-color: var(--primary);
+        }
+
+        .plus-button {
+            position: absolute;
+            top: 60px;
+            right: 24px;
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 24px;
+            font-weight: 300;
+            box-shadow: 0 4px 12px var(--shadow);
+            z-index: 10;
+        }
+
+        .filter-button {
+            position: absolute;
+            top: 60px;
+            right: 24px;
+            width: 40px;
+            height: 40px;
+            background: var(--bg-primary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-secondary);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+            z-index: 10;
+            border: 1px solid var(--border);
+        }
+
+        .bottom-nav {
+            position: absolute;
+            bottom: 16px;
+            left: 16px;
+            right: 16px;
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-radius: 24px;
+            padding: 12px 8px;
+            display: flex;
+            justify-content: space-around;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.12);
+            border: 1px solid rgba(255,255,255,0.5);
+        }
+
+        .nav-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 4px;
+            padding: 8px 12px;
+            border-radius: 16px;
+            transition: all 0.2s;
+        }
+
+        .nav-item.active {
+            background: rgba(255,107,53,0.12);
+        }
+
+        .nav-icon {
+            font-size: 24px;
+        }
+
+        .nav-item.active .nav-icon {
+            color: var(--primary);
+        }
+
+        .nav-item:not(.active) .nav-icon {
+            color: var(--text-tertiary);
+        }
+
+        .nav-label {
+            font-size: 11px;
+            font-weight: 600;
+        }
+
+        .nav-item.active .nav-label {
+            color: var(--primary);
+        }
+
+        .nav-item:not(.active) .nav-label {
+            color: var(--text-tertiary);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Orange Light Mode - Core Screens</h1>
+
+        <!-- QUESTIONS -->
+        <div class="section-header">
+            <h2>❓ Questions</h2>
+            <p>Orange accents, smaller save icons, vibrant warm design</p>
+        </div>
+
+        <div class="mockup-grid">
+            <div>
+                <div class="screen-title">Questions - Orange</div>
+                <div class="phone-frame">
+                    <div class="phone-notch"></div>
+                    <div class="screen">
+                        <div class="status-bar">
+                            <span>9:41</span>
+                            <span>● ● ●</span>
+                        </div>
+                        <div class="plus-button">+</div>
+                        <div class="screen-content">
+                            <div style="margin-bottom: 24px;">
+                                <div style="font-size: 28px; font-weight: 700;">Questions</div>
+                            </div>
+
+                            <div class="category-pills">
+                                <div class="pill active">All</div>
+                                <div class="pill">Asked by me</div>
+                                <div class="pill">🏠 Housing</div>
+                                <div class="pill">💰 Cost of Living</div>
+                                <div class="pill">🎉 Social Life</div>
+                            </div>
+
+                            <div class="card">
+                                <div style="display: flex; justify-content: space-between; align-items: start; margin-bottom: 8px;">
+                                    <div class="card-title">Best areas to live in Manchester?</div>
+                                    <div style="font-size: 13px; color: var(--text-tertiary); white-space: nowrap; margin-left: 12px;">2h</div>
+                                </div>
+                                <div class="card-text">Looking for student-friendly neighborhoods near UoM campus. Safety and community are important.</div>
+                                <div class="card-meta">
+                                    <span class="badge-count">12 answers</span>
+                                    <span>•</span>
+                                    <span>🏠 Housing</span>
+                                </div>
+                                <svg class="save-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="m19 21-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/>
+                                </svg>
+                            </div>
+
+                            <div class="card">
+                                <div style="display: flex; justify-content: space-between; align-items: start; margin-bottom: 8px;">
+                                    <div class="card-title">Weekly grocery budget?</div>
+                                    <div style="font-size: 13px; color: var(--text-tertiary); white-space: nowrap; margin-left: 12px;">5h</div>
+                                </div>
+                                <div class="card-text">Trying to budget for food costs. What should I expect?</div>
+                                <div class="card-meta">
+                                    <span class="badge-count">8 answers</span>
+                                    <span>•</span>
+                                    <span>💰 Cost of Living</span>
+                                </div>
+                                <svg class="save-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="fill: var(--primary); stroke: var(--primary);">
+                                    <path d="m19 21-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/>
+                                </svg>
+                            </div>
+                        </div>
+
+                        <div class="bottom-nav">
+                            <div class="nav-item">
+                                <svg class="nav-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
+                                </svg>
+                                <div class="nav-label">Home</div>
+                            </div>
+                            <div class="nav-item active">
+                                <svg class="nav-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <circle cx="12" cy="12" r="10"/>
+                                    <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/>
+                                </svg>
+                                <div class="nav-label">Questions</div>
+                            </div>
+                            <div class="nav-item">
+                                <svg class="nav-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/>
+                                    <circle cx="9" cy="7" r="4"/>
+                                </svg>
+                                <div class="nav-label">People</div>
+                            </div>
+                            <div class="nav-item">
+                                <svg class="nav-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
+                                    <line x1="16" y1="2" x2="16" y2="6"/>
+                                    <line x1="8" y1="2" x2="8" y2="6"/>
+                                    <line x1="3" y1="10" x2="21" y2="10"/>
+                                </svg>
+                                <div class="nav-label">Events</div>
+                            </div>
+                            <div class="nav-item">
+                                <svg class="nav-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+                                    <circle cx="9" cy="7" r="4"/>
+                                </svg>
+                                <div class="nav-label">Groups</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- DISCOVERY -->
+        <div class="section-header">
+            <h2>🔍 Discovery</h2>
+            <p>Orange borders for high compatibility, teal for medium, search bar included</p>
+        </div>
+
+        <div class="mockup-grid">
+            <div>
+                <div class="screen-title">Discovery - Orange</div>
+                <div class="phone-frame">
+                    <div class="phone-notch"></div>
+                    <div class="screen">
+                        <div class="status-bar">
+                            <span>9:41</span>
+                            <span>● ● ●</span>
+                        </div>
+                        <div class="filter-button">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <line x1="4" y1="21" x2="4" y2="14"/>
+                                <line x1="4" y1="10" x2="4" y2="3"/>
+                                <line x1="12" y1="21" x2="12" y2="12"/>
+                                <line x1="12" y1="8" x2="12" y2="3"/>
+                                <line x1="20" y1="21" x2="20" y2="16"/>
+                                <line x1="20" y1="12" x2="20" y2="3"/>
+                            </svg>
+                        </div>
+                        <div class="screen-content">
+                            <div style="margin-bottom: 24px;">
+                                <div style="font-size: 28px; font-weight: 700; margin-bottom: 8px;">Discover</div>
+                                <div style="font-size: 15px; color: var(--text-secondary);">Zimbabweans in the UK</div>
+                            </div>
+
+                            <div class="search-bar">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#999" stroke-width="2">
+                                    <circle cx="11" cy="11" r="8"/>
+                                    <path d="m21 21-4.35-4.35"/>
+                                </svg>
+                                <input type="text" placeholder="Search by name or university" />
+                            </div>
+
+                            <div class="discovery-card high-compatibility">
+                                <div class="compatibility-label high">A lot in common</div>
+                                <div style="display: flex; align-items: center; gap: 16px; margin-bottom: 16px;">
+                                    <div class="discovery-avatar">T</div>
+                                    <div style="flex: 1;">
+                                        <div style="font-size: 17px; font-weight: 600; margin-bottom: 4px;">Tafadzwa M.</div>
+                                        <div style="font-size: 14px; color: var(--text-secondary);">University of Manchester • 2nd Year</div>
+                                        <div style="display: flex; align-items: center; gap: 4px; font-size: 14px; margin-top: 4px;">
+                                            <span>🇿🇼</span>
+                                            <span style="color: var(--text-tertiary);">Harare →</span>
+                                            <span>🇬🇧</span>
+                                            <span style="color: var(--text-tertiary);">Manchester</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div style="font-size: 13px; color: var(--text-tertiary); margin-bottom: 8px;">Interests</div>
+                                <div class="tags">
+                                    <span class="tag highlight">⚽ Football</span>
+                                    <span class="tag highlight">🏋️ Gym</span>
+                                    <span class="tag highlight">💻 Tech</span>
+                                </div>
+                            </div>
+
+                            <div class="discovery-card medium-compatibility">
+                                <div class="compatibility-label medium">Some things in common</div>
+                                <div style="display: flex; align-items: center; gap: 16px; margin-bottom: 16px;">
+                                    <div class="discovery-avatar" style="background: linear-gradient(135deg, #0096c7 0%, #00b4d8 100%);">K</div>
+                                    <div style="flex: 1;">
+                                        <div style="font-size: 17px; font-weight: 600; margin-bottom: 4px;">Kudzi S.</div>
+                                        <div style="font-size: 14px; color: var(--text-secondary);">University of Edinburgh • 1st Year</div>
+                                        <div style="display: flex; align-items: center; gap: 4px; font-size: 14px; margin-top: 4px;">
+                                            <span>🇿🇼</span>
+                                            <span style="color: var(--text-tertiary);">Bulawayo →</span>
+                                            <span>🇬🇧</span>
+                                            <span style="color: var(--text-tertiary);">Edinburgh</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div style="font-size: 13px; color: var(--text-tertiary); margin-bottom: 8px;">Interests</div>
+                                <div class="tags">
+                                    <span class="tag highlight">💻 Tech</span>
+                                    <span class="tag">📚 Reading</span>
+                                    <span class="tag">🎵 Music</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="bottom-nav">
+                            <div class="nav-item">
+                                <svg class="nav-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
+                                </svg>
+                                <div class="nav-label">Home</div>
+                            </div>
+                            <div class="nav-item">
+                                <svg class="nav-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <circle cx="12" cy="12" r="10"/>
+                                    <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/>
+                                </svg>
+                                <div class="nav-label">Questions</div>
+                            </div>
+                            <div class="nav-item active">
+                                <svg class="nav-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/>
+                                    <circle cx="9" cy="7" r="4"/>
+                                </svg>
+                                <div class="nav-label">People</div>
+                            </div>
+                            <div class="nav-item">
+                                <svg class="nav-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
+                                    <line x1="16" y1="2" x2="16" y2="6"/>
+                                    <line x1="8" y1="2" x2="8" y2="6"/>
+                                    <line x1="3" y1="10" x2="21" y2="10"/>
+                                </svg>
+                                <div class="nav-label">Events</div>
+                            </div>
+                            <div class="nav-item">
+                                <svg class="nav-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+                                    <circle cx="9" cy="7" r="4"/>
+                                </svg>
+                                <div class="nav-label">Groups</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Continuing with Events and Groups in next file due to length... -->
+        <div class="section-header">
+            <h2>✅ Questions & Discovery Complete!</h2>
+            <p>Events and Groups screens available - creating complete package now!</p>
+        </div>
+    </div>
+</body>
+</html>

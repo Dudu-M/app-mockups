@@ -1,0 +1,1505 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jakaranda - Core Features Mockups</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Segoe UI', sans-serif;
+            background: #f0f0f0;
+            padding: 40px 20px;
+            color: #1F2937;
+        }
+
+        .container {
+            max-width: 1800px;
+            margin: 0 auto;
+        }
+
+        h1 {
+            font-size: 36px;
+            font-weight: 700;
+            margin-bottom: 12px;
+            background: linear-gradient(135deg, #DC2626 0%, #EF4444 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-align: center;
+            margin-bottom: 48px;
+        }
+
+        .section-header {
+            background: white;
+            border-radius: 12px;
+            padding: 24px;
+            margin-bottom: 24px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+        }
+
+        .section-header h2 {
+            font-size: 24px;
+            font-weight: 700;
+            color: #DC2626;
+            margin-bottom: 8px;
+        }
+
+        .section-header p {
+            font-size: 15px;
+            color: #6B7280;
+        }
+
+        .mockup-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
+            gap: 40px;
+            margin-bottom: 60px;
+        }
+
+        .phone-frame {
+            background: #1a1a1a;
+            border-radius: 50px;
+            padding: 16px;
+            box-shadow: 0 24px 48px rgba(0,0,0,0.3);
+            position: relative;
+            max-width: 390px;
+            margin: 0 auto;
+        }
+
+        .phone-notch {
+            position: absolute;
+            top: 16px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 150px;
+            height: 30px;
+            background: #1a1a1a;
+            border-radius: 0 0 20px 20px;
+            z-index: 10;
+        }
+
+        .screen {
+            background: white;
+            border-radius: 38px;
+            overflow: hidden;
+            position: relative;
+            aspect-ratio: 9/19.5;
+        }
+
+        .screen-content {
+            padding: 60px 24px 24px;
+            height: 100%;
+            overflow-y: auto;
+        }
+
+        .status-bar {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 44px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 24px;
+            font-size: 15px;
+            font-weight: 600;
+            color: #1F2937;
+            z-index: 5;
+        }
+
+        .screen-title {
+            text-align: center;
+            margin-bottom: 12px;
+            font-size: 13px;
+            font-weight: 600;
+            color: #DC2626;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .screen-padding {
+            padding-bottom: 100px;
+        }
+
+        /* Plus Button */
+        .plus-button {
+            position: absolute;
+            top: 60px;
+            right: 24px;
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, #DC2626 0%, #EF4444 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 24px;
+            font-weight: 300;
+            box-shadow: 0 4px 12px rgba(220, 38, 38, 0.3);
+            z-index: 10;
+        }
+
+        .filter-button {
+            position: absolute;
+            top: 60px;
+            right: 24px;
+            width: 40px;
+            height: 40px;
+            background: #F9FAFB;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #4B5563;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+            z-index: 10;
+            border: 1px solid #E5E7EB;
+        }
+
+        /* Category Pills */
+        .category-pills {
+            display: flex;
+            gap: 8px;
+            overflow-x: auto;
+            padding-bottom: 12px;
+            margin-bottom: 24px;
+            -webkit-overflow-scrolling: touch;
+            scrollbar-width: none;
+        }
+
+        .category-pills::-webkit-scrollbar {
+            display: none;
+        }
+
+        .pill {
+            padding: 8px 16px;
+            background: #F9FAFB;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: 500;
+            color: #4B5563;
+            white-space: nowrap;
+            border: 2px solid transparent;
+            transition: all 0.2s;
+        }
+
+        .pill.active {
+            background: #FEF2F2;
+            border-color: #DC2626;
+            color: #DC2626;
+        }
+
+        /* Cards */
+        .card {
+            background: #F9FAFB;
+            border-radius: 16px;
+            padding: 20px;
+            margin-bottom: 12px;
+            border: 1px solid #F3F4F6;
+        }
+
+        .card-title {
+            font-size: 17px;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: #1F2937;
+        }
+
+        .card-text {
+            font-size: 15px;
+            color: #6B7280;
+            line-height: 1.5;
+        }
+
+        .card-meta {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-top: 12px;
+            font-size: 13px;
+            color: #9CA3AF;
+        }
+
+        .badge {
+            display: inline-block;
+            background: #0891B2;
+            color: white;
+            padding: 4px 10px;
+            border-radius: 6px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        /* Bottom Sheet */
+        .bottom-sheet {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: white;
+            border-radius: 24px 24px 0 0;
+            padding: 24px;
+            max-height: 80%;
+            overflow-y: auto;
+            box-shadow: 0 -4px 24px rgba(0,0,0,0.15);
+        }
+
+        .sheet-handle {
+            width: 40px;
+            height: 4px;
+            background: #E5E7EB;
+            border-radius: 2px;
+            margin: 0 auto 20px;
+        }
+
+        .close-button {
+            position: absolute;
+            top: 24px;
+            right: 24px;
+            width: 32px;
+            height: 32px;
+            background: #F9FAFB;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            color: #4B5563;
+        }
+
+        /* Input Fields */
+        .input-group {
+            margin-bottom: 20px;
+        }
+
+        .input-label {
+            font-size: 15px;
+            font-weight: 600;
+            color: #1F2937;
+            margin-bottom: 8px;
+            display: block;
+        }
+
+        .input-field {
+            width: 100%;
+            padding: 16px;
+            border: 2px solid #E5E7EB;
+            border-radius: 12px;
+            font-size: 16px;
+            transition: all 0.2s;
+            background: white;
+        }
+
+        .input-field:focus {
+            outline: none;
+            border-color: #DC2626;
+            background: #FEF2F2;
+        }
+
+        .btn {
+            display: block;
+            width: 100%;
+            padding: 16px;
+            border-radius: 14px;
+            font-size: 17px;
+            font-weight: 600;
+            border: none;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            text-align: center;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #DC2626 0%, #EF4444 100%);
+            color: white;
+            box-shadow: 0 8px 20px rgba(220, 38, 38, 0.25);
+        }
+
+        /* Discovery Cards */
+        .discovery-card {
+            background: white;
+            border-radius: 20px;
+            padding: 24px;
+            box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+            margin-bottom: 16px;
+            border: 1px solid #F3F4F6;
+        }
+
+        .discovery-header {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 16px;
+        }
+
+        .discovery-avatar {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #0891B2 0%, #06B6D4 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            color: white;
+            font-weight: 600;
+        }
+
+        .discovery-name {
+            font-size: 17px;
+            font-weight: 600;
+            margin-bottom: 4px;
+            color: #1F2937;
+        }
+
+        .discovery-uni {
+            font-size: 14px;
+            color: #6B7280;
+        }
+
+        .tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 12px;
+        }
+
+        .tag {
+            background: #F9FAFB;
+            padding: 6px 12px;
+            border-radius: 8px;
+            font-size: 13px;
+            color: #4B5563;
+        }
+
+        .tag.highlight {
+            background: #CFFAFE;
+            color: #155E75;
+            border: 1px solid #0891B2;
+            font-weight: 600;
+        }
+
+        .tag-more {
+            background: #DC2626;
+            color: white;
+        }
+
+        /* University Grid */
+        .university-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+        }
+
+        .university-card {
+            padding: 20px;
+            background: white;
+            border-radius: 16px;
+            text-align: center;
+            border: 2px solid #F3F4F6;
+            transition: all 0.2s;
+        }
+
+        .university-card:hover {
+            border-color: #DC2626;
+            background: #FEF2F2;
+        }
+
+        .uni-logo {
+            width: 56px;
+            height: 56px;
+            background: linear-gradient(135deg, #F9FAFB 0%, #F3F4F6 100%);
+            border-radius: 14px;
+            margin: 0 auto 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 28px;
+        }
+
+        .uni-name {
+            font-size: 15px;
+            font-weight: 600;
+            color: #1F2937;
+            margin-bottom: 4px;
+        }
+
+        .uni-count {
+            font-size: 13px;
+            color: #6B7280;
+        }
+
+        /* Map View */
+        .map-container {
+            background: linear-gradient(135deg, #F3F4F6 0%, #E5E7EB 100%);
+            border-radius: 16px;
+            height: 400px;
+            position: relative;
+            margin-bottom: 16px;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 2px dashed #9CA3AF;
+        }
+
+        .map-placeholder {
+            text-align: center;
+            color: #6B7280;
+        }
+
+        .map-pin {
+            position: absolute;
+            width: 32px;
+            height: 32px;
+            background: #DC2626;
+            border-radius: 50% 50% 50% 0;
+            transform: rotate(-45deg);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 12px rgba(220, 38, 38, 0.4);
+        }
+
+        .map-pin::after {
+            content: '';
+            width: 12px;
+            height: 12px;
+            background: white;
+            border-radius: 50%;
+        }
+
+        /* Tabs */
+        .tabs {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 24px;
+            border-bottom: 1px solid #F3F4F6;
+            padding-bottom: 0;
+        }
+
+        .tab {
+            flex: 1;
+            padding: 12px 16px;
+            text-align: center;
+            font-size: 15px;
+            font-weight: 600;
+            color: #9CA3AF;
+            border-bottom: 2px solid transparent;
+            transition: all 0.2s;
+        }
+
+        .tab.active {
+            color: #DC2626;
+            border-bottom-color: #DC2626;
+        }
+
+        /* Bottom Navigation */
+        .bottom-nav {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: white;
+            border-top: 1px solid #F3F4F6;
+            padding: 8px 8px 24px;
+            display: flex;
+            justify-content: space-around;
+        }
+
+        .nav-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 4px;
+            padding: 8px 16px;
+            border-radius: 12px;
+        }
+
+        .nav-item.active {
+            background: #FEF2F2;
+        }
+
+        .nav-icon {
+            font-size: 24px;
+        }
+
+        .nav-item.active .nav-icon {
+            color: #DC2626;
+        }
+
+        .nav-item:not(.active) .nav-icon {
+            color: #9CA3AF;
+        }
+
+        .nav-label {
+            font-size: 11px;
+            font-weight: 600;
+        }
+
+        .nav-item.active .nav-label {
+            color: #DC2626;
+        }
+
+        .nav-item:not(.active) .nav-label {
+            color: #9CA3AF;
+        }
+
+        /* Answer Section */
+        .answer-section {
+            background: white;
+            border-radius: 12px;
+            padding: 16px;
+            margin-bottom: 12px;
+            border: 1px solid #F3F4F6;
+        }
+
+        .answer-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 12px;
+        }
+
+        .answer-avatar {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, #0891B2 0%, #06B6D4 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 16px;
+            color: white;
+            font-weight: 600;
+        }
+
+        .answer-author {
+            flex: 1;
+        }
+
+        .answer-name {
+            font-size: 15px;
+            font-weight: 600;
+            color: #1F2937;
+        }
+
+        .answer-time {
+            font-size: 13px;
+            color: #9CA3AF;
+        }
+
+        .answer-text {
+            font-size: 15px;
+            color: #4B5563;
+            line-height: 1.6;
+        }
+
+        /* Profile specific */
+        .profile-header {
+            text-align: center;
+            margin-bottom: 32px;
+        }
+
+        .profile-avatar {
+            width: 100px;
+            height: 100px;
+            background: linear-gradient(135deg, #0891B2 0%, #06B6D4 100%);
+            border-radius: 50%;
+            margin: 0 auto 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 40px;
+            color: white;
+            font-weight: 600;
+        }
+
+        .profile-name {
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 8px;
+            color: #1F2937;
+        }
+
+        .profile-location {
+            font-size: 15px;
+            color: #6B7280;
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+            margin-bottom: 24px;
+        }
+
+        .info-card {
+            background: #F9FAFB;
+            padding: 16px;
+            border-radius: 12px;
+            text-align: center;
+        }
+
+        .info-label {
+            font-size: 13px;
+            color: #9CA3AF;
+            margin-bottom: 4px;
+        }
+
+        .info-value {
+            font-size: 15px;
+            font-weight: 600;
+            color: #1F2937;
+        }
+
+        .bio-section {
+            background: #FEF2F2;
+            border-left: 4px solid #DC2626;
+            padding: 16px;
+            border-radius: 12px;
+            margin-bottom: 24px;
+        }
+
+        .bio-title {
+            font-size: 13px;
+            color: #DC2626;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .bio-text {
+            font-size: 15px;
+            color: #4B5563;
+            line-height: 1.5;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Jakaranda - Core Features</h1>
+
+        <!-- QUESTIONS FEED -->
+        <div class="section-header">
+            <h2>Questions Feed</h2>
+            <p>Category pills, plus button for asking questions, timestamps in top right</p>
+        </div>
+
+        <div class="mockup-grid">
+            <!-- Questions Main -->
+            <div>
+                <div class="screen-title">Questions Feed</div>
+                <div class="phone-frame">
+                    <div class="phone-notch"></div>
+                    <div class="screen">
+                        <div class="status-bar">
+                            <span>9:41</span>
+                            <span>● ● ●</span>
+                        </div>
+                        <div class="plus-button">+</div>
+                        <div class="screen-content screen-padding">
+                            <div style="margin-bottom: 24px;">
+                                <div style="font-size: 28px; font-weight: 700;">Questions</div>
+                            </div>
+
+                            <div class="category-pills">
+                                <div class="pill active">All</div>
+                                <div class="pill">Asked by me</div>
+                                <div class="pill">🏠 Housing</div>
+                                <div class="pill">💰 Cost of Living</div>
+                                <div class="pill">🎉 Social Life</div>
+                                <div class="pill">🍕 Food</div>
+                                <div class="pill">🛡️ Safety</div>
+                                <div class="pill">⛅ Weather</div>
+                            </div>
+
+                            <div class="card">
+                                <div style="display: flex; justify-content: space-between; align-items: start; margin-bottom: 8px;">
+                                    <div class="card-title">Best areas to live in Manchester?</div>
+                                    <div style="font-size: 13px; color: #9CA3AF; white-space: nowrap; margin-left: 12px;">2h</div>
+                                </div>
+                                <div class="card-text">Looking for student-friendly neighborhoods near UoM campus. Safety and community are important to me.</div>
+                                <div class="card-meta">
+                                    <span class="badge">12 answers</span>
+                                    <span>•</span>
+                                    <span>🏠 Housing</span>
+                                </div>
+                            </div>
+
+                            <div class="card">
+                                <div style="display: flex; justify-content: space-between; align-items: start; margin-bottom: 8px;">
+                                    <div class="card-title">Weekly grocery budget?</div>
+                                    <div style="font-size: 13px; color: #9CA3AF; white-space: nowrap; margin-left: 12px;">5h</div>
+                                </div>
+                                <div class="card-text">Trying to budget for food costs. What should I expect as a student?</div>
+                                <div class="card-meta">
+                                    <span class="badge">8 answers</span>
+                                    <span>•</span>
+                                    <span>💰 Cost of Living</span>
+                                </div>
+                            </div>
+
+                            <div class="card">
+                                <div style="display: flex; justify-content: space-between; align-items: start; margin-bottom: 8px;">
+                                    <div class="card-title">Is winter really that bad?</div>
+                                    <div style="font-size: 13px; color: #9CA3AF; white-space: nowrap; margin-left: 12px;">1d</div>
+                                </div>
+                                <div class="card-text">Coming from Zimbabwe, worried about the cold. Any tips?</div>
+                                <div class="card-meta">
+                                    <span class="badge">15 answers</span>
+                                    <span>•</span>
+                                    <span>⛅ Weather</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="bottom-nav">
+                            <div class="nav-item">
+                                <svg class="nav-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
+                                </svg>
+                                <div class="nav-label">Home</div>
+                            </div>
+                            <div class="nav-item active">
+                                <svg class="nav-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <circle cx="12" cy="12" r="10"/>
+                                    <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/>
+                                </svg>
+                                <div class="nav-label">Questions</div>
+                            </div>
+                            <div class="nav-item">
+                                <svg class="nav-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/>
+                                    <circle cx="9" cy="7" r="4"/>
+                                </svg>
+                                <div class="nav-label">People</div>
+                            </div>
+                            <div class="nav-item">
+                                <svg class="nav-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+                                    <circle cx="9" cy="7" r="4"/>
+                                </svg>
+                                <div class="nav-label">Groups</div>
+                            </div>
+                            <div class="nav-item">
+                                <svg class="nav-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/>
+                                    <circle cx="12" cy="7" r="4"/>
+                                </svg>
+                                <div class="nav-label">Profile</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Question Detail (Bottom Sheet) -->
+            <div>
+                <div class="screen-title">Question Detail</div>
+                <div class="phone-frame">
+                    <div class="phone-notch"></div>
+                    <div class="screen">
+                        <div class="status-bar">
+                            <span>9:41</span>
+                            <span>● ● ●</span>
+                        </div>
+                        <div class="screen-content" style="background: rgba(0,0,0,0.3); padding: 0;">
+                            <div class="bottom-sheet">
+                                <div class="sheet-handle"></div>
+                                
+                                <div style="font-size: 22px; font-weight: 700; margin-bottom: 8px;">Best areas to live in Manchester?</div>
+                                <div style="font-size: 15px; color: #6B7280; margin-bottom: 20px; line-height: 1.5;">
+                                    Looking for student-friendly neighborhoods near UoM campus. Safety and community are important to me.
+                                </div>
+
+                                <div style="display: flex; gap: 8px; margin-bottom: 24px; font-size: 13px; color: #9CA3AF;">
+                                    <span>🏠 Housing</span>
+                                    <span>•</span>
+                                    <span>12 answers</span>
+                                    <span>•</span>
+                                    <span>2h ago</span>
+                                </div>
+
+                                <div style="font-size: 16px; font-weight: 600; margin-bottom: 16px; color: #1F2937;">Answers</div>
+
+                                <div class="answer-section">
+                                    <div class="answer-header">
+                                        <div class="answer-avatar">T</div>
+                                        <div class="answer-author">
+                                            <div class="answer-name">Tafadzwa M.</div>
+                                            <div class="answer-time">3h ago</div>
+                                        </div>
+                                    </div>
+                                    <div class="answer-text">
+                                        Fallowfield is popular with students and close to campus. It's affordable and has a great community feel. Highly recommend!
+                                    </div>
+                                </div>
+
+                                <div class="answer-section">
+                                    <div class="answer-header">
+                                        <div class="answer-avatar" style="background: linear-gradient(135deg, #F59E0B 0%, #FBBF24 100%);">K</div>
+                                        <div class="answer-author">
+                                            <div class="answer-name">Kudzi S.</div>
+                                            <div class="answer-time">1h ago</div>
+                                        </div>
+                                    </div>
+                                    <div class="answer-text">
+                                        I live in Withington. Quieter than Fallowfield but still close to everything. Great bus connections too.
+                                    </div>
+                                </div>
+
+                                <div class="input-group" style="margin-bottom: 0;">
+                                    <textarea class="input-field" rows="3" placeholder="Write your answer..."></textarea>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Ask Question Modal -->
+            <div>
+                <div class="screen-title">Ask Question (Bottom Sheet)</div>
+                <div class="phone-frame">
+                    <div class="phone-notch"></div>
+                    <div class="screen">
+                        <div class="status-bar">
+                            <span>9:41</span>
+                            <span>● ● ●</span>
+                        </div>
+                        <div class="screen-content" style="background: rgba(0,0,0,0.3); padding: 0;">
+                            <div class="bottom-sheet">
+                                <div class="sheet-handle"></div>
+                                <div class="close-button">×</div>
+                                
+                                <div style="font-size: 24px; font-weight: 700; margin-bottom: 24px;">Ask a Question</div>
+
+                                <div class="input-group">
+                                    <label class="input-label">Question Title</label>
+                                    <input type="text" class="input-field" placeholder="e.g., Best areas to live in Manchester?" />
+                                </div>
+
+                                <div class="input-group">
+                                    <label class="input-label">Details (optional)</label>
+                                    <textarea class="input-field" rows="4" placeholder="Add more context..."></textarea>
+                                </div>
+
+                                <div class="input-group">
+                                    <label class="input-label">Category</label>
+                                    <div class="category-pills">
+                                        <div class="pill">🏠 Housing</div>
+                                        <div class="pill active">💰 Cost of Living</div>
+                                        <div class="pill">🎉 Social Life</div>
+                                        <div class="pill">🍕 Food</div>
+                                    </div>
+                                </div>
+
+                                <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 24px;">
+                                    <input type="checkbox" id="anon" style="width: 20px; height: 20px;" />
+                                    <label for="anon" style="font-size: 15px; color: #4B5563;">Ask anonymously</label>
+                                </div>
+
+                                <button class="btn btn-primary">Post Question</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- DISCOVERY -->
+        <div class="section-header">
+            <h2>Discovery / People</h2>
+            <p>Filter button, shared interests highlighted, languages shown (3 max), flags, by university grid, map view</p>
+        </div>
+
+        <div class="mockup-grid">
+            <!-- Discovery Main -->
+            <div>
+                <div class="screen-title">Discover People</div>
+                <div class="phone-frame">
+                    <div class="phone-notch"></div>
+                    <div class="screen">
+                        <div class="status-bar">
+                            <span>9:41</span>
+                            <span>● ● ●</span>
+                        </div>
+                        <div class="filter-button">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <line x1="4" y1="21" x2="4" y2="14"/>
+                                <line x1="4" y1="10" x2="4" y2="3"/>
+                                <line x1="12" y1="21" x2="12" y2="12"/>
+                                <line x1="12" y1="8" x2="12" y2="3"/>
+                                <line x1="20" y1="21" x2="20" y2="16"/>
+                                <line x1="20" y1="12" x2="20" y2="3"/>
+                            </svg>
+                        </div>
+                        <div class="screen-content screen-padding">
+                            <div style="margin-bottom: 24px;">
+                                <div style="font-size: 28px; font-weight: 700; margin-bottom: 8px;">Discover</div>
+                                <div style="font-size: 15px; color: #6B7280;">Zimbabweans in the UK</div>
+                            </div>
+
+                            <div style="background: #F9FAFB; padding: 12px 16px; border-radius: 12px; display: flex; align-items: center; gap: 12px; margin-bottom: 24px; border: 1px solid #E5E7EB;">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#9CA3AF" stroke-width="2">
+                                    <circle cx="11" cy="11" r="8"/>
+                                    <path d="m21 21-4.35-4.35"/>
+                                </svg>
+                                <input type="text" placeholder="Search by name or university" style="flex: 1; background: transparent; border: none; font-size: 16px; outline: none; color: #1F2937;" />
+                            </div>
+
+                            <div class="discovery-card">
+                                <div class="discovery-header">
+                                    <div class="discovery-avatar">T</div>
+                                    <div style="flex: 1;">
+                                        <div class="discovery-name">Tafadzwa M.</div>
+                                        <div class="discovery-uni">University of Manchester • 2nd Year</div>
+                                        <div style="display: flex; align-items: center; gap: 4px; font-size: 14px; margin-top: 4px;">
+                                            <span>🇿🇼</span>
+                                            <span style="color: #9CA3AF;">Harare →</span>
+                                            <span>🇬🇧</span>
+                                            <span style="color: #9CA3AF;">Manchester</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div style="font-size: 13px; color: #9CA3AF; margin-bottom: 8px;">Languages</div>
+                                <div class="tags" style="margin-bottom: 12px;">
+                                    <span class="tag highlight">English</span>
+                                    <span class="tag highlight">Shona</span>
+                                    <span class="tag tag-more">+1</span>
+                                </div>
+
+                                <div style="font-size: 13px; color: #9CA3AF; margin-bottom: 8px;">Interests</div>
+                                <div class="tags">
+                                    <span class="tag highlight">⚽ Football</span>
+                                    <span class="tag highlight">🏋️ Gym</span>
+                                    <span class="tag">💻 Tech</span>
+                                </div>
+                            </div>
+
+                            <div class="discovery-card">
+                                <div class="discovery-header">
+                                    <div class="discovery-avatar" style="background: linear-gradient(135deg, #F59E0B 0%, #FBBF24 100%);">K</div>
+                                    <div style="flex: 1;">
+                                        <div class="discovery-name">Kudzi S.</div>
+                                        <div class="discovery-uni">University of Edinburgh • 1st Year</div>
+                                        <div style="display: flex; align-items: center; gap: 4px; font-size: 14px; margin-top: 4px;">
+                                            <span>🇿🇼</span>
+                                            <span style="color: #9CA3AF;">Bulawayo →</span>
+                                            <span>🇬🇧</span>
+                                            <span style="color: #9CA3AF;">Edinburgh</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div style="font-size: 13px; color: #9CA3AF; margin-bottom: 8px;">Languages</div>
+                                <div class="tags" style="margin-bottom: 12px;">
+                                    <span class="tag highlight">English</span>
+                                    <span class="tag">French</span>
+                                </div>
+
+                                <div style="font-size: 13px; color: #9CA3AF; margin-bottom: 8px;">Interests</div>
+                                <div class="tags">
+                                    <span class="tag">📚 Reading</span>
+                                    <span class="tag">🎵 Music</span>
+                                    <span class="tag">🎨 Art</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="bottom-nav">
+                            <div class="nav-item">
+                                <svg class="nav-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
+                                </svg>
+                                <div class="nav-label">Home</div>
+                            </div>
+                            <div class="nav-item">
+                                <svg class="nav-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <circle cx="12" cy="12" r="10"/>
+                                    <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/>
+                                </svg>
+                                <div class="nav-label">Questions</div>
+                            </div>
+                            <div class="nav-item active">
+                                <svg class="nav-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/>
+                                    <circle cx="9" cy="7" r="4"/>
+                                </svg>
+                                <div class="nav-label">People</div>
+                            </div>
+                            <div class="nav-item">
+                                <svg class="nav-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+                                    <circle cx="9" cy="7" r="4"/>
+                                </svg>
+                                <div class="nav-label">Groups</div>
+                            </div>
+                            <div class="nav-item">
+                                <svg class="nav-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/>
+                                    <circle cx="12" cy="7" r="4"/>
+                                </svg>
+                                <div class="nav-label">Profile</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- By University -->
+            <div>
+                <div class="screen-title">By University</div>
+                <div class="phone-frame">
+                    <div class="phone-notch"></div>
+                    <div class="screen">
+                        <div class="status-bar">
+                            <span>9:41</span>
+                            <span>● ● ●</span>
+                        </div>
+                        <div class="screen-content screen-padding">
+                            <div style="margin-bottom: 24px;">
+                                <div style="font-size: 28px; font-weight: 700; margin-bottom: 8px;">By University</div>
+                                <div style="font-size: 15px; color: #6B7280;">Find Zimbabweans at UK universities</div>
+                            </div>
+
+                            <div class="university-grid">
+                                <div class="university-card">
+                                    <div class="uni-logo">🎓</div>
+                                    <div class="uni-name">Manchester</div>
+                                    <div class="uni-count">47 students</div>
+                                </div>
+
+                                <div class="university-card">
+                                    <div class="uni-logo">🏛️</div>
+                                    <div class="uni-name">Oxford</div>
+                                    <div class="uni-count">23 students</div>
+                                </div>
+
+                                <div class="university-card">
+                                    <div class="uni-logo">📚</div>
+                                    <div class="uni-name">Cambridge</div>
+                                    <div class="uni-count">19 students</div>
+                                </div>
+
+                                <div class="university-card">
+                                    <div class="uni-logo">🔬</div>
+                                    <div class="uni-name">Imperial</div>
+                                    <div class="uni-count">31 students</div>
+                                </div>
+
+                                <div class="university-card">
+                                    <div class="uni-logo">🎨</div>
+                                    <div class="uni-name">Edinburgh</div>
+                                    <div class="uni-count">28 students</div>
+                                </div>
+
+                                <div class="university-card">
+                                    <div class="uni-logo">⚙️</div>
+                                    <div class="uni-name">Warwick</div>
+                                    <div class="uni-count">15 students</div>
+                                </div>
+
+                                <div class="university-card">
+                                    <div class="uni-logo">🏫</div>
+                                    <div class="uni-name">Bristol</div>
+                                    <div class="uni-count">22 students</div>
+                                </div>
+
+                                <div class="university-card">
+                                    <div class="uni-logo">📖</div>
+                                    <div class="uni-name">UCL</div>
+                                    <div class="uni-count">35 students</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="bottom-nav">
+                            <div class="nav-item">
+                                <svg class="nav-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
+                                </svg>
+                                <div class="nav-label">Home</div>
+                            </div>
+                            <div class="nav-item">
+                                <svg class="nav-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <circle cx="12" cy="12" r="10"/>
+                                    <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/>
+                                </svg>
+                                <div class="nav-label">Questions</div>
+                            </div>
+                            <div class="nav-item active">
+                                <svg class="nav-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/>
+                                    <circle cx="9" cy="7" r="4"/>
+                                </svg>
+                                <div class="nav-label">People</div>
+                            </div>
+                            <div class="nav-item">
+                                <svg class="nav-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+                                    <circle cx="9" cy="7" r="4"/>
+                                </svg>
+                                <div class="nav-label">Groups</div>
+                            </div>
+                            <div class="nav-item">
+                                <svg class="nav-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/>
+                                    <circle cx="12" cy="7" r="4"/>
+                                </svg>
+                                <div class="nav-label">Profile</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Map View -->
+            <div>
+                <div class="screen-title">Map View</div>
+                <div class="phone-frame">
+                    <div class="phone-notch"></div>
+                    <div class="screen">
+                        <div class="status-bar">
+                            <span>9:41</span>
+                            <span>● ● ●</span>
+                        </div>
+                        <div class="screen-content screen-padding">
+                            <div style="margin-bottom: 16px;">
+                                <div style="font-size: 28px; font-weight: 700; margin-bottom: 8px;">Map View</div>
+                                <div style="font-size: 15px; color: #6B7280;">Discover by location</div>
+                            </div>
+
+                            <div class="map-container">
+                                <div class="map-placeholder">
+                                    <div style="font-size: 48px; margin-bottom: 12px;">🗺️</div>
+                                    <div style="font-size: 15px; font-weight: 600; margin-bottom: 4px;">Map Integration</div>
+                                    <div style="font-size: 13px;">City pins, clusters, tap to explore</div>
+                                </div>
+                            </div>
+
+                            <div style="background: white; border-radius: 16px; padding: 20px; box-shadow: 0 2px 8px rgba(0,0,0,0.08);">
+                                <div style="font-size: 17px; font-weight: 600; margin-bottom: 12px; color: #1F2937;">📍 Manchester</div>
+                                <div style="font-size: 15px; color: #6B7280; margin-bottom: 16px;">47 students from Zimbabwe</div>
+                                <button class="btn btn-primary" style="margin: 0;">View All</button>
+                            </div>
+                        </div>
+
+                        <div class="bottom-nav">
+                            <div class="nav-item">
+                                <svg class="nav-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
+                                </svg>
+                                <div class="nav-label">Home</div>
+                            </div>
+                            <div class="nav-item">
+                                <svg class="nav-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <circle cx="12" cy="12" r="10"/>
+                                    <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/>
+                                </svg>
+                                <div class="nav-label">Questions</div>
+                            </div>
+                            <div class="nav-item active">
+                                <svg class="nav-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/>
+                                    <circle cx="9" cy="7" r="4"/>
+                                </svg>
+                                <div class="nav-label">People</div>
+                            </div>
+                            <div class="nav-item">
+                                <svg class="nav-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+                                    <circle cx="9" cy="7" r="4"/>
+                                </svg>
+                                <div class="nav-label">Groups</div>
+                            </div>
+                            <div class="nav-item">
+                                <svg class="nav-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/>
+                                    <circle cx="12" cy="7" r="4"/>
+                                </svg>
+                                <div class="nav-label">Profile</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- GROUPS -->
+        <div class="section-header">
+            <h2>Groups</h2>
+            <p>Tabs (My Groups / Discover), plus button to create community groups</p>
+        </div>
+
+        <div class="mockup-grid">
+            <!-- Groups Main -->
+            <div>
+                <div class="screen-title">Groups</div>
+                <div class="phone-frame">
+                    <div class="phone-notch"></div>
+                    <div class="screen">
+                        <div class="status-bar">
+                            <span>9:41</span>
+                            <span>● ● ●</span>
+                        </div>
+                        <div class="plus-button">+</div>
+                        <div class="screen-content screen-padding">
+                            <div style="margin-bottom: 24px;">
+                                <div style="font-size: 28px; font-weight: 700;">Groups</div>
+                            </div>
+
+                            <div class="tabs">
+                                <div class="tab active">My Groups</div>
+                                <div class="tab">Discover</div>
+                            </div>
+
+                            <div class="card" style="background: linear-gradient(135deg, #FEF2F2 0%, #FEE2E2 100%); border-left: 4px solid #DC2626; padding: 24px; border: none;">
+                                <div style="display: flex; align-items: center; gap: 16px; margin-bottom: 12px;">
+                                    <div style="font-size: 40px;">🇿🇼</div>
+                                    <div style="flex: 1;">
+                                        <div style="font-size: 18px; font-weight: 700; margin-bottom: 4px; color: #1F2937;">Zimbabweans in UK</div>
+                                        <div style="font-size: 14px; color: #6B7280;">1,247 members</div>
+                                    </div>
+                                </div>
+                                <div style="font-size: 14px; color: #4B5563; margin-bottom: 12px; line-height: 1.5;">Your country group - connect with fellow Zimbabweans across all UK universities</div>
+                                <span class="badge" style="background: #DC2626;">Country Group</span>
+                            </div>
+
+                            <div class="card" style="background: linear-gradient(135deg, #ECFDF5 0%, #D1FAE5 100%); border-left: 4px solid #0891B2; padding: 24px; margin-top: 16px; border: none;">
+                                <div style="display: flex; align-items: center; gap: 16px; margin-bottom: 12px;">
+                                    <div style="font-size: 40px;">🎓</div>
+                                    <div style="flex: 1;">
+                                        <div style="font-size: 18px; font-weight: 700; margin-bottom: 4px; color: #1F2937;">UoM International</div>
+                                        <div style="font-size: 14px; color: #6B7280;">423 members</div>
+                                    </div>
+                                </div>
+                                <div style="font-size: 14px; color: #4B5563; margin-bottom: 12px; line-height: 1.5;">Your university group - meet students from around the world at Manchester</div>
+                                <span class="badge" style="background: #0891B2;">University Group</span>
+                            </div>
+
+                            <div class="card" style="padding: 24px; margin-top: 16px;">
+                                <div style="display: flex; align-items: center; gap: 16px; margin-bottom: 12px;">
+                                    <div style="font-size: 40px;">✨</div>
+                                    <div style="flex: 1;">
+                                        <div style="font-size: 18px; font-weight: 700; margin-bottom: 4px; color: #1F2937;">New Arrivals (Sept 2026)</div>
+                                        <div style="font-size: 14px; color: #6B7280;">89 members</div>
+                                    </div>
+                                </div>
+                                <div style="font-size: 14px; color: #6B7280; margin-bottom: 12px; line-height: 1.5;">Students arriving in September 2026 - share tips and excitement!</div>
+                                <span class="badge" style="background: #F59E0B;">New Arrivals</span>
+                            </div>
+                        </div>
+
+                        <div class="bottom-nav">
+                            <div class="nav-item">
+                                <svg class="nav-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
+                                </svg>
+                                <div class="nav-label">Home</div>
+                            </div>
+                            <div class="nav-item">
+                                <svg class="nav-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <circle cx="12" cy="12" r="10"/>
+                                    <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/>
+                                </svg>
+                                <div class="nav-label">Questions</div>
+                            </div>
+                            <div class="nav-item">
+                                <svg class="nav-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/>
+                                    <circle cx="9" cy="7" r="4"/>
+                                </svg>
+                                <div class="nav-label">People</div>
+                            </div>
+                            <div class="nav-item active">
+                                <svg class="nav-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+                                    <circle cx="9" cy="7" r="4"/>
+                                </svg>
+                                <div class="nav-label">Groups</div>
+                            </div>
+                            <div class="nav-item">
+                                <svg class="nav-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/>
+                                    <circle cx="12" cy="7" r="4"/>
+                                </svg>
+                                <div class="nav-label">Profile</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- PROFILE -->
+        <div class="section-header">
+            <h2>Profile</h2>
+            <p>Viewing another user's profile with prominent Connect button and icebreaker prompts</p>
+        </div>
+
+        <div class="mockup-grid">
+            <!-- Other User Profile -->
+            <div>
+                <div class="screen-title">Viewing Profile</div>
+                <div class="phone-frame">
+                    <div class="phone-notch"></div>
+                    <div class="screen">
+                        <div class="status-bar">
+                            <span>9:41</span>
+                            <span>● ● ●</span>
+                        </div>
+                        <div class="screen-content screen-padding">
+                            <div class="profile-header">
+                                <div class="profile-avatar">T</div>
+                                <div class="profile-name">Tafadzwa M.</div>
+                                <div class="profile-location">
+                                    <span>🇿🇼</span>
+                                    <span>Harare, Zimbabwe →</span>
+                                    <span>🇬🇧</span>
+                                    <span>Manchester, UK</span>
+                                </div>
+                                <button class="btn btn-primary" style="max-width: 300px; margin: 0 auto; display: flex; align-items: center; justify-content: center; gap: 8px;">
+                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+                                    </svg>
+                                    Connect
+                                </button>
+                            </div>
+
+                            <div class="info-grid">
+                                <div class="info-card">
+                                    <div class="info-label">University</div>
+                                    <div class="info-value">Manchester</div>
+                                </div>
+                                <div class="info-card">
+                                    <div class="info-label">Year</div>
+                                    <div class="info-value">2nd Year</div>
+                                </div>
+                            </div>
+
+                            <div class="bio-section">
+                                <div class="bio-title">Languages</div>
+                                <div class="tags" style="margin-top: 8px;">
+                                    <span class="tag highlight">English</span>
+                                    <span class="tag highlight">Shona</span>
+                                    <span class="tag highlight">Ndebele</span>
+                                </div>
+                            </div>
+
+                            <div class="bio-section">
+                                <div class="bio-title">Shared Interests</div>
+                                <div class="tags" style="margin-top: 8px;">
+                                    <span class="tag highlight">⚽ Football</span>
+                                    <span class="tag highlight">🏋️ Gym</span>
+                                    <span class="tag">💻 Tech</span>
+                                    <span class="tag">🎵 Music</span>
+                                </div>
+                            </div>
+
+                            <div class="bio-section">
+                                <div class="bio-title">What they wish they knew</div>
+                                <div class="bio-text">Manchester weather is no joke - invest in a good waterproof jacket! Also, join societies during freshers week.</div>
+                            </div>
+                        </div>
+
+                        <div class="bottom-nav">
+                            <div class="nav-item">
+                                <svg class="nav-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
+                                </svg>
+                                <div class="nav-label">Home</div>
+                            </div>
+                            <div class="nav-item">
+                                <svg class="nav-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <circle cx="12" cy="12" r="10"/>
+                                    <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/>
+                                </svg>
+                                <div class="nav-label">Questions</div>
+                            </div>
+                            <div class="nav-item">
+                                <svg class="nav-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/>
+                                    <circle cx="9" cy="7" r="4"/>
+                                </svg>
+                                <div class="nav-label">People</div>
+                            </div>
+                            <div class="nav-item">
+                                <svg class="nav-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+                                    <circle cx="9" cy="7" r="4"/>
+                                </svg>
+                                <div class="nav-label">Groups</div>
+                            </div>
+                            <div class="nav-item active">
+                                <svg class="nav-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/>
+                                    <circle cx="12" cy="7" r="4"/>
+                                </svg>
+                                <div class="nav-label">Profile</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Chat with Icebreaker -->
+            <div>
+                <div class="screen-title">Connect - Icebreakers</div>
+                <div class="phone-frame">
+                    <div class="phone-notch"></div>
+                    <div class="screen">
+                        <div class="status-bar">
+                            <span>9:41</span>
+                            <span>● ● ●</span>
+                        </div>
+                        <div class="screen-content">
+                            <div style="text-align: center; padding: 40px 24px;">
+                                <div class="profile-avatar" style="width: 80px; height: 80px; font-size: 32px; margin: 0 auto 16px;">T</div>
+                                <div style="font-size: 22px; font-weight: 700; margin-bottom: 8px;">Start a conversation</div>
+                                <div style="font-size: 15px; color: #6B7280; margin-bottom: 32px;">Choose a suggested prompt or write your own</div>
+
+                                <div style="background: #FEF2F2; border: 2px solid #FEE2E2; border-radius: 12px; padding: 16px; margin-bottom: 12px; text-align: left; cursor: pointer;">
+                                    <div style="font-size: 15px; color: #1F2937; line-height: 1.5;">Hey! I saw you're into ⚽ Football. Do you play for any teams at uni?</div>
+                                </div>
+
+                                <div style="background: #FEF2F2; border: 2px solid #FEE2E2; border-radius: 12px; padding: 16px; margin-bottom: 12px; text-align: left; cursor: pointer;">
+                                    <div style="font-size: 15px; color: #1F2937; line-height: 1.5;">What's been your favorite thing about Manchester so far?</div>
+                                </div>
+
+                                <div style="background: #FEF2F2; border: 2px solid #FEE2E2; border-radius: 12px; padding: 16px; margin-bottom: 24px; text-align: left; cursor: pointer;">
+                                    <div style="font-size: 15px; color: #1F2937; line-height: 1.5;">Any tips for someone moving from Harare to Manchester?</div>
+                                </div>
+
+                                <div style="text-align: center; margin: 20px 0; color: #9CA3AF; font-size: 14px;">or</div>
+
+                                <textarea class="input-field" rows="3" placeholder="Write your own message..." style="margin-bottom: 16px;"></textarea>
+                                <button class="btn btn-primary">Send Message</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Final Note -->
+        <div class="section-header">
+            <h2>✅ Design Complete!</h2>
+            <p>All core screens designed with Option 5 colors, professional quality, and ready to build. Questions, Discovery (with filters/map/university), Groups, and Profile are all covered.</p>
+        </div>
+    </div>
+</body>
+</html>

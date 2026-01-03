@@ -1,0 +1,1244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jakaranda - Final Mockups v3 (Option 5 Colors)</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Segoe UI', sans-serif;
+            background: #f0f0f0;
+            padding: 40px 20px;
+            color: #1F2937;
+        }
+
+        .container {
+            max-width: 1800px;
+            margin: 0 auto;
+        }
+
+        h1 {
+            font-size: 36px;
+            font-weight: 700;
+            margin-bottom: 12px;
+            background: linear-gradient(135deg, #DC2626 0%, #EF4444 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-align: center;
+            margin-bottom: 48px;
+        }
+
+        .section-header {
+            background: white;
+            border-radius: 12px;
+            padding: 24px;
+            margin-bottom: 24px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+        }
+
+        .section-header h2 {
+            font-size: 24px;
+            font-weight: 700;
+            color: #DC2626;
+            margin-bottom: 8px;
+        }
+
+        .section-header p {
+            font-size: 15px;
+            color: #6B7280;
+        }
+
+        .mockup-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
+            gap: 40px;
+            margin-bottom: 60px;
+        }
+
+        .phone-frame {
+            background: #1a1a1a;
+            border-radius: 50px;
+            padding: 16px;
+            box-shadow: 0 24px 48px rgba(0,0,0,0.3);
+            position: relative;
+            max-width: 390px;
+            margin: 0 auto;
+        }
+
+        .phone-notch {
+            position: absolute;
+            top: 16px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 150px;
+            height: 30px;
+            background: #1a1a1a;
+            border-radius: 0 0 20px 20px;
+            z-index: 10;
+        }
+
+        .screen {
+            background: white;
+            border-radius: 38px;
+            overflow: hidden;
+            position: relative;
+            aspect-ratio: 9/19.5;
+        }
+
+        .screen-content {
+            padding: 60px 24px 24px;
+            height: 100%;
+            overflow-y: auto;
+        }
+
+        .status-bar {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 44px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 24px;
+            font-size: 15px;
+            font-weight: 600;
+            color: #1F2937;
+            z-index: 5;
+        }
+
+        .screen-title {
+            text-align: center;
+            margin-bottom: 12px;
+            font-size: 13px;
+            font-weight: 600;
+            color: #DC2626;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        /* Progress Bar */
+        .progress-bar {
+            display: flex;
+            gap: 4px;
+            justify-content: center;
+            margin-bottom: 32px;
+        }
+
+        .progress-segment {
+            width: 24px;
+            height: 4px;
+            background: #E5E7EB;
+            border-radius: 2px;
+        }
+
+        .progress-segment.active {
+            background: linear-gradient(135deg, #DC2626 0%, #EF4444 100%);
+        }
+
+        /* Buttons */
+        .btn {
+            display: block;
+            width: 100%;
+            padding: 16px;
+            border-radius: 14px;
+            font-size: 17px;
+            font-weight: 600;
+            border: none;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            margin-bottom: 12px;
+            text-align: center;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #DC2626 0%, #EF4444 100%);
+            color: white;
+            box-shadow: 0 8px 20px rgba(220, 38, 38, 0.25);
+        }
+
+        .btn-secondary {
+            background: #F9FAFB;
+            color: #1F2937;
+            border: 2px solid #E5E7EB;
+        }
+
+        .btn-accent {
+            background: linear-gradient(135deg, #0891B2 0%, #06B6D4 100%);
+            color: white;
+            box-shadow: 0 8px 20px rgba(8, 145, 178, 0.25);
+        }
+
+        /* Input Fields */
+        .input-group {
+            margin-bottom: 20px;
+        }
+
+        .input-label {
+            font-size: 15px;
+            font-weight: 600;
+            color: #1F2937;
+            margin-bottom: 8px;
+            display: block;
+        }
+
+        .input-field {
+            width: 100%;
+            padding: 16px;
+            border: 2px solid #E5E7EB;
+            border-radius: 12px;
+            font-size: 16px;
+            transition: all 0.2s;
+            background: white;
+        }
+
+        .input-field:focus {
+            outline: none;
+            border-color: #DC2626;
+            background: #FEF2F2;
+        }
+
+        /* Interest Pills */
+        .interest-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+        }
+
+        .interest-pill {
+            padding: 16px;
+            background: #F9FAFB;
+            border-radius: 12px;
+            text-align: center;
+            font-size: 15px;
+            font-weight: 500;
+            border: 2px solid transparent;
+            transition: all 0.2s;
+        }
+
+        .interest-pill.selected {
+            background: #FEF2F2;
+            border-color: #DC2626;
+            color: #DC2626;
+        }
+
+        /* Cards */
+        .card {
+            background: #F9FAFB;
+            border-radius: 16px;
+            padding: 20px;
+            margin-bottom: 12px;
+        }
+
+        .card-title {
+            font-size: 17px;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: #1F2937;
+        }
+
+        .card-text {
+            font-size: 15px;
+            color: #6B7280;
+            line-height: 1.5;
+        }
+
+        .card-meta {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-top: 12px;
+            font-size: 13px;
+            color: #9CA3AF;
+        }
+
+        /* Daily Tip */
+        .daily-tip {
+            background: linear-gradient(135deg, #0891B2 0%, #06B6D4 100%);
+            border-radius: 16px;
+            padding: 20px;
+            color: white;
+            margin-bottom: 24px;
+            display: flex;
+            align-items: start;
+            gap: 12px;
+        }
+
+        .tip-icon {
+            font-size: 24px;
+        }
+
+        .tip-label {
+            font-size: 12px;
+            opacity: 0.9;
+            margin-bottom: 4px;
+            font-weight: 600;
+        }
+
+        .tip-text {
+            font-size: 14px;
+            line-height: 1.5;
+        }
+
+        /* Category Pills */
+        .category-pills {
+            display: flex;
+            gap: 8px;
+            overflow-x: auto;
+            padding-bottom: 12px;
+            margin-bottom: 24px;
+            -webkit-overflow-scrolling: touch;
+            scrollbar-width: none;
+        }
+
+        .category-pills::-webkit-scrollbar {
+            display: none;
+        }
+
+        .pill {
+            padding: 8px 16px;
+            background: #F9FAFB;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: 500;
+            color: #4B5563;
+            white-space: nowrap;
+            border: 2px solid transparent;
+            transition: all 0.2s;
+        }
+
+        .pill.active {
+            background: #FEF2F2;
+            border-color: #DC2626;
+            color: #DC2626;
+        }
+
+        /* Horizontal Scroll */
+        .horizontal-scroll {
+            overflow-x: auto;
+            display: flex;
+            gap: 12px;
+            padding-bottom: 12px;
+            -webkit-overflow-scrolling: touch;
+            scrollbar-width: none;
+        }
+
+        .horizontal-scroll::-webkit-scrollbar {
+            display: none;
+        }
+
+        .horizontal-card {
+            min-width: 280px;
+            background: white;
+            border-radius: 16px;
+            padding: 20px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+            border: 1px solid #F3F4F6;
+        }
+
+        /* Tags & Badges */
+        .tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .tag {
+            background: #F9FAFB;
+            padding: 6px 12px;
+            border-radius: 8px;
+            font-size: 13px;
+            color: #4B5563;
+        }
+
+        .tag.highlight {
+            background: #CFFAFE;
+            color: #155E75;
+            border: 1px; 
+            border-color: #06B6D4;
+        }
+
+        .badge {
+            display: inline-block;
+            background: #0891B2;
+            color: white;
+            padding: 4px 10px;
+            border-radius: 6px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        /* Discovery Cards */
+        .discovery-card {
+            background: white;
+            border-radius: 20px;
+            padding: 24px;
+            box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+            margin-bottom: 16px;
+            border: 1px solid #F3F4F6;
+        }
+
+        .discovery-header {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 16px;
+        }
+
+        .discovery-avatar {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #0891B2 0%, #06B6D4 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            color: white;
+            font-weight: 600;
+        }
+
+        .discovery-name {
+            font-size: 17px;
+            font-weight: 600;
+            margin-bottom: 4px;
+            color: #1F2937;
+        }
+
+        .discovery-uni {
+            font-size: 14px;
+            color: #6B7280;
+        }
+
+        /* Bottom Sheet */
+        .bottom-sheet {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: white;
+            border-radius: 24px 24px 0 0;
+            padding: 24px;
+            max-height: 80%;
+            overflow-y: auto;
+            box-shadow: 0 -4px 24px rgba(0,0,0,0.15);
+        }
+
+        .sheet-handle {
+            width: 40px;
+            height: 4px;
+            background: #E5E7EB;
+            border-radius: 2px;
+            margin: 0 auto 20px;
+        }
+
+        /* Plus Button */
+        .plus-button {
+            position: absolute;
+            top: 60px;
+            right: 24px;
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, #DC2626 0%, #EF4444 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 24px;
+            font-weight: 300;
+            box-shadow: 0 4px 12px rgba(220, 38, 38, 0.3);
+            z-index: 10;
+        }
+
+        /* Bottom Navigation */
+        .bottom-nav {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: white;
+            border-top: 1px solid #F3F4F6;
+            padding: 8px 8px 24px;
+            display: flex;
+            justify-content: space-around;
+        }
+
+        .nav-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 4px;
+            padding: 8px 16px;
+            border-radius: 12px;
+        }
+
+        .nav-item.active {
+            background: #FEF2F2;
+        }
+
+        .nav-icon {
+            font-size: 24px;
+        }
+
+        .nav-item.active .nav-icon {
+            color: #DC2626;
+        }
+
+        .nav-item:not(.active) .nav-icon {
+            color: #9CA3AF;
+        }
+
+        .nav-label {
+            font-size: 11px;
+            font-weight: 600;
+        }
+
+        .nav-item.active .nav-label {
+            color: #DC2626;
+        }
+
+        .nav-item:not(.active) .nav-label {
+            color: #9CA3AF;
+        }
+
+        .screen-padding {
+            padding-bottom: 100px;
+        }
+
+        .countdown-card {
+            background: linear-gradient(135deg, #DC2626 0%, #EF4444 100%);
+            border-radius: 20px;
+            padding: 32px 24px;
+            text-align: center;
+            color: white;
+            margin-bottom: 24px;
+            box-shadow: 0 12px 32px rgba(220, 38, 38, 0.25);
+        }
+
+        .countdown-label {
+            font-size: 15px;
+            opacity: 0.9;
+            margin-bottom: 8px;
+        }
+
+        .countdown-number {
+            font-size: 56px;
+            font-weight: 700;
+            margin-bottom: 4px;
+        }
+
+        .countdown-unit {
+            font-size: 17px;
+            opacity: 0.9;
+        }
+
+        .section-header-inline {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 16px;
+        }
+
+        .section-title {
+            font-size: 22px;
+            font-weight: 700;
+            color: #1F2937;
+        }
+
+        .see-all {
+            font-size: 15px;
+            color: #DC2626;
+            font-weight: 600;
+        }
+
+        /* Tabs */
+        .tabs {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 24px;
+            border-bottom: 1px solid #F3F4F6;
+            padding-bottom: 0;
+        }
+
+        .tab {
+            flex: 1;
+            padding: 12px 16px;
+            text-align: center;
+            font-size: 15px;
+            font-weight: 600;
+            color: #9CA3AF;
+            border-bottom: 2px solid transparent;
+            transition: all 0.2s;
+        }
+
+        .tab.active {
+            color: #DC2626;
+            border-bottom-color: #DC2626;
+        }
+
+        /* Placeholder for illustrations */
+        .illustration-placeholder {
+            width: 200px;
+            height: 200px;
+            background: linear-gradient(135deg, #FEF2F2 0%, #FEE2E2 100%);
+            border-radius: 20px;
+            margin: 0 auto 32px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 64px;
+            border: 2px dashed #DC2626;
+        }
+
+        .placeholder-text {
+            font-size: 13px;
+            color: #DC2626;
+            text-align: center;
+            margin-top: 12px;
+            font-style: italic;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Jakaranda - Final Mockups v3</h1>
+
+        <!-- ONBOARDING FLOW -->
+        <div class="section-header">
+            <h2>Onboarding Flow (10 Steps)</h2>
+            <p>Complete profile setup with progress indicators. Corrected order with "Why are you moving" in Step 4.</p>
+        </div>
+
+        <div class="mockup-grid">
+            <!-- Step 1: Auth -->
+            <div>
+                <div class="screen-title">Step 1: Sign Up</div>
+                <div class="phone-frame">
+                    <div class="phone-notch"></div>
+                    <div class="screen">
+                        <div class="status-bar">
+                            <span>9:41</span>
+                            <span>● ● ●</span>
+                        </div>
+                        <div class="screen-content">
+                            <div class="progress-bar">
+                                <div class="progress-segment active"></div>
+                                <div class="progress-segment"></div>
+                                <div class="progress-segment"></div>
+                                <div class="progress-segment"></div>
+                                <div class="progress-segment"></div>
+                                <div class="progress-segment"></div>
+                                <div class="progress-segment"></div>
+                                <div class="progress-segment"></div>
+                                <div class="progress-segment"></div>
+                            </div>
+
+                            <div style="text-align: center; margin-bottom: 32px;">
+                                <div style="font-size: 28px; font-weight: 700; margin-bottom: 8px;">Create Account</div>
+                                <div style="font-size: 15px; color: #6B7280;">Join your community abroad</div>
+                            </div>
+
+                            <div class="input-group">
+                                <label class="input-label">Full Name</label>
+                                <input type="text" class="input-field" placeholder="John Doe" />
+                            </div>
+
+                            <div class="input-group">
+                                <label class="input-label">Email</label>
+                                <input type="email" class="input-field" placeholder="john@example.com" />
+                            </div>
+
+                            <div class="input-group">
+                                <label class="input-label">Password</label>
+                                <input type="password" class="input-field" placeholder="••••••••" />
+                            </div>
+
+                            <button class="btn btn-primary">Continue</button>
+
+                            <div style="text-align: center; margin: 16px 0; color: #9CA3AF; font-size: 14px;">or</div>
+
+                            <button class="btn btn-secondary">
+                                <span style="margin-right: 8px;">🔵</span> Continue with Google
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Step 2: Relocation Status -->
+            <div>
+                <div class="screen-title">Step 2: Relocation Status</div>
+                <div class="phone-frame">
+                    <div class="phone-notch"></div>
+                    <div class="screen">
+                        <div class="status-bar">
+                            <span>9:41</span>
+                            <span>● ● ●</span>
+                        </div>
+                        <div class="screen-content">
+                            <div class="progress-bar">
+                                <div class="progress-segment active"></div>
+                                <div class="progress-segment active"></div>
+                                <div class="progress-segment"></div>
+                                <div class="progress-segment"></div>
+                                <div class="progress-segment"></div>
+                                <div class="progress-segment"></div>
+                                <div class="progress-segment"></div>
+                                <div class="progress-segment"></div>
+                                <div class="progress-segment"></div>
+                            </div>
+
+                            <div style="text-align: center; margin-bottom: 40px;">
+                                <div style="font-size: 28px; font-weight: 700; margin-bottom: 8px;">What's your relocation status?</div>
+                                <div style="font-size: 15px; color: #6B7280;">Help us personalize your experience</div>
+                            </div>
+
+                            <button class="btn btn-primary">I've Already Moved</button>
+                            <button class="btn btn-secondary">I'm Planning to Move</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Step 3: Countries & Cities -->
+            <div>
+                <div class="screen-title">Step 3: Countries & Cities</div>
+                <div class="phone-frame">
+                    <div class="phone-notch"></div>
+                    <div class="screen">
+                        <div class="status-bar">
+                            <span>9:41</span>
+                            <span>● ● ●</span>
+                        </div>
+                        <div class="screen-content">
+                            <div class="progress-bar">
+                                <div class="progress-segment active"></div>
+                                <div class="progress-segment active"></div>
+                                <div class="progress-segment active"></div>
+                                <div class="progress-segment"></div>
+                                <div class="progress-segment"></div>
+                                <div class="progress-segment"></div>
+                                <div class="progress-segment"></div>
+                                <div class="progress-segment"></div>
+                                <div class="progress-segment"></div>
+                            </div>
+
+                            <div style="text-align: center; margin-bottom: 32px;">
+                                <div style="font-size: 28px; font-weight: 700; margin-bottom: 8px;">Where are you from?</div>
+                                <div style="font-size: 15px; color: #6B7280;">This helps us connect you with your community</div>
+                            </div>
+
+                            <div class="input-group">
+                                <label class="input-label">Home Country</label>
+                                <div class="input-field" style="display: flex; align-items: center; gap: 12px;">
+                                    <span style="font-size: 20px;">🇿🇼</span>
+                                    <span>Zimbabwe</span>
+                                </div>
+                            </div>
+
+                            <div class="input-group">
+                                <label class="input-label">Home City</label>
+                                <input type="text" class="input-field" placeholder="e.g., Harare" />
+                            </div>
+
+                            <div class="input-group">
+                                <label class="input-label">Destination Country</label>
+                                <div class="input-field" style="display: flex; align-items: center; gap: 12px;">
+                                    <span style="font-size: 20px;">🇬🇧</span>
+                                    <span>United Kingdom</span>
+                                </div>
+                            </div>
+
+                            <div class="input-group">
+                                <label class="input-label">Destination City</label>
+                                <input type="text" class="input-field" placeholder="e.g., Manchester" />
+                            </div>
+
+                            <button class="btn btn-primary" style="margin-top: 24px;">Continue</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Step 4: When & Why -->
+            <div>
+                <div class="screen-title">Step 4: When & Why</div>
+                <div class="phone-frame">
+                    <div class="phone-notch"></div>
+                    <div class="screen">
+                        <div class="status-bar">
+                            <span>9:41</span>
+                            <span>● ● ●</span>
+                        </div>
+                        <div class="screen-content">
+                            <div class="progress-bar">
+                                <div class="progress-segment active"></div>
+                                <div class="progress-segment active"></div>
+                                <div class="progress-segment active"></div>
+                                <div class="progress-segment active"></div>
+                                <div class="progress-segment"></div>
+                                <div class="progress-segment"></div>
+                                <div class="progress-segment"></div>
+                                <div class="progress-segment"></div>
+                                <div class="progress-segment"></div>
+                            </div>
+
+                            <div style="text-align: center; margin-bottom: 32px;">
+                                <div style="font-size: 28px; font-weight: 700; margin-bottom: 8px;">Your Journey</div>
+                                <div style="font-size: 15px; color: #6B7280;">Help us understand your timeline</div>
+                            </div>
+
+                            <div class="input-group">
+                                <label class="input-label">When are you moving?</label>
+                                <input type="date" class="input-field" value="2026-09-15" />
+                            </div>
+
+                            <div class="input-group">
+                                <label class="input-label">Why are you moving?</label>
+                                <select class="input-field">
+                                    <option>Select reason...</option>
+                                    <option selected>University</option>
+                                    <option>Work</option>
+                                    <option>Other</option>
+                                </select>
+                            </div>
+
+                            <button class="btn btn-primary" style="margin-top: 24px;">Continue</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Step 5: University Details -->
+            <div>
+                <div class="screen-title">Step 5: University</div>
+                <div class="phone-frame">
+                    <div class="phone-notch"></div>
+                    <div class="screen">
+                        <div class="status-bar">
+                            <span>9:41</span>
+                            <span>● ● ●</span>
+                        </div>
+                        <div class="screen-content">
+                            <div class="progress-bar">
+                                <div class="progress-segment active"></div>
+                                <div class="progress-segment active"></div>
+                                <div class="progress-segment active"></div>
+                                <div class="progress-segment active"></div>
+                                <div class="progress-segment active"></div>
+                                <div class="progress-segment"></div>
+                                <div class="progress-segment"></div>
+                                <div class="progress-segment"></div>
+                                <div class="progress-segment"></div>
+                            </div>
+
+                            <div style="text-align: center; margin-bottom: 32px;">
+                                <div style="font-size: 28px; font-weight: 700; margin-bottom: 8px;">University Details</div>
+                                <div style="font-size: 15px; color: #6B7280;">Connect with students at your university</div>
+                            </div>
+
+                            <div class="input-group">
+                                <label class="input-label">University Name</label>
+                                <input type="text" class="input-field" placeholder="e.g., University of Manchester" />
+                            </div>
+
+                            <div class="input-group">
+                                <label class="input-label">Year of Study</label>
+                                <select class="input-field">
+                                    <option>Select year...</option>
+                                    <option>Incoming (2026)</option>
+                                    <option>1st Year</option>
+                                    <option>2nd Year</option>
+                                    <option>3rd Year</option>
+                                    <option>4th Year</option>
+                                    <option>Postgraduate</option>
+                                </select>
+                            </div>
+
+                            <button class="btn btn-primary" style="margin-top: 24px;">Continue</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Step 6: Languages -->
+            <div>
+                <div class="screen-title">Step 6: Languages</div>
+                <div class="phone-frame">
+                    <div class="phone-notch"></div>
+                    <div class="screen">
+                        <div class="status-bar">
+                            <span>9:41</span>
+                            <span>● ● ●</span>
+                        </div>
+                        <div class="screen-content">
+                            <div class="progress-bar">
+                                <div class="progress-segment active"></div>
+                                <div class="progress-segment active"></div>
+                                <div class="progress-segment active"></div>
+                                <div class="progress-segment active"></div>
+                                <div class="progress-segment active"></div>
+                                <div class="progress-segment active"></div>
+                                <div class="progress-segment"></div>
+                                <div class="progress-segment"></div>
+                                <div class="progress-segment"></div>
+                            </div>
+
+                            <div style="text-align: center; margin-bottom: 32px;">
+                                <div style="font-size: 28px; font-weight: 700; margin-bottom: 8px;">Languages You Speak</div>
+                                <div style="font-size: 15px; color: #6B7280;">Select up to 5 languages</div>
+                            </div>
+
+                            <div class="input-group">
+                                <input type="text" class="input-field" placeholder="Search languages..." />
+                            </div>
+
+                            <div style="margin-bottom: 16px;">
+                                <div style="font-size: 13px; color: #9CA3AF; margin-bottom: 8px;">Selected (2/5)</div>
+                                <div class="tags">
+                                    <span class="tag" style="background: #DC2626; color: white;">English ×</span>
+                                    <span class="tag" style="background: #DC2626; color: white;">Shona ×</span>
+                                </div>
+                            </div>
+
+                            <div class="interest-grid">
+                                <div class="interest-pill selected">English</div>
+                                <div class="interest-pill selected">Shona</div>
+                                <div class="interest-pill">Ndebele</div>
+                                <div class="interest-pill">French</div>
+                                <div class="interest-pill">Spanish</div>
+                                <div class="interest-pill">Portuguese</div>
+                            </div>
+
+                            <button class="btn btn-primary" style="margin-top: 32px;">Continue</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Step 7: Interests -->
+            <div>
+                <div class="screen-title">Step 7: Interests</div>
+                <div class="phone-frame">
+                    <div class="phone-notch"></div>
+                    <div class="screen">
+                        <div class="status-bar">
+                            <span>9:41</span>
+                            <span>● ● ●</span>
+                        </div>
+                        <div class="screen-content">
+                            <div class="progress-bar">
+                                <div class="progress-segment active"></div>
+                                <div class="progress-segment active"></div>
+                                <div class="progress-segment active"></div>
+                                <div class="progress-segment active"></div>
+                                <div class="progress-segment active"></div>
+                                <div class="progress-segment active"></div>
+                                <div class="progress-segment active"></div>
+                                <div class="progress-segment"></div>
+                                <div class="progress-segment"></div>
+                            </div>
+
+                            <div style="text-align: center; margin-bottom: 32px;">
+                                <div style="font-size: 28px; font-weight: 700; margin-bottom: 8px;">Your Interests</div>
+                                <div style="font-size: 15px; color: #6B7280;">Select up to 10 interests</div>
+                            </div>
+
+                            <div class="interest-grid">
+                                <div class="interest-pill selected">⚽ Football</div>
+                                <div class="interest-pill selected">🏋️ Gym</div>
+                                <div class="interest-pill selected">💻 Tech</div>
+                                <div class="interest-pill">🎵 Music</div>
+                                <div class="interest-pill">📚 Reading</div>
+                                <div class="interest-pill">🎮 Gaming</div>
+                                <div class="interest-pill">🎨 Art</div>
+                                <div class="interest-pill">🍕 Food</div>
+                                <div class="interest-pill">🎬 Movies</div>
+                                <div class="interest-pill">✈️ Travel</div>
+                                <div class="interest-pill">📸 Photography</div>
+                                <div class="interest-pill">🏃 Running</div>
+                            </div>
+
+                            <button class="btn btn-primary" style="margin-top: 32px;">Continue (3/10 selected)</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Step 8: Profile Photo -->
+            <div>
+                <div class="screen-title">Step 8: Photo (Optional)</div>
+                <div class="phone-frame">
+                    <div class="phone-notch"></div>
+                    <div class="screen">
+                        <div class="status-bar">
+                            <span>9:41</span>
+                            <span>● ● ●</span>
+                        </div>
+                        <div class="screen-content">
+                            <div class="progress-bar">
+                                <div class="progress-segment active"></div>
+                                <div class="progress-segment active"></div>
+                                <div class="progress-segment active"></div>
+                                <div class="progress-segment active"></div>
+                                <div class="progress-segment active"></div>
+                                <div class="progress-segment active"></div>
+                                <div class="progress-segment active"></div>
+                                <div class="progress-segment active"></div>
+                                <div class="progress-segment"></div>
+                            </div>
+
+                            <div style="text-align: center; margin-bottom: 32px;">
+                                <div style="font-size: 28px; font-weight: 700; margin-bottom: 8px;">Add a Profile Photo</div>
+                                <div style="font-size: 15px; color: #6B7280;">Help people recognize you (optional)</div>
+                            </div>
+
+                            <div style="text-align: center; margin-bottom: 40px;">
+                                <div style="width: 120px; height: 120px; background: linear-gradient(135deg, #DC2626 0%, #EF4444 100%); border-radius: 50%; margin: 0 auto; display: flex; align-items: center; justify-content: center; font-size: 48px; color: white; font-weight: 700;">
+                                    DM
+                                </div>
+                            </div>
+
+                            <button class="btn btn-primary">Upload Photo</button>
+                            <button class="btn btn-secondary">Skip for Now</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Step 9: What I Wish I Knew -->
+            <div>
+                <div class="screen-title">Step 9: Final Touch</div>
+                <div class="phone-frame">
+                    <div class="phone-notch"></div>
+                    <div class="screen">
+                        <div class="status-bar">
+                            <span>9:41</span>
+                            <span>● ● ●</span>
+                        </div>
+                        <div class="screen-content">
+                            <div class="progress-bar">
+                                <div class="progress-segment active"></div>
+                                <div class="progress-segment active"></div>
+                                <div class="progress-segment active"></div>
+                                <div class="progress-segment active"></div>
+                                <div class="progress-segment active"></div>
+                                <div class="progress-segment active"></div>
+                                <div class="progress-segment active"></div>
+                                <div class="progress-segment active"></div>
+                                <div class="progress-segment active"></div>
+                            </div>
+
+                            <div style="text-align: center; margin-bottom: 32px;">
+                                <div style="font-size: 28px; font-weight: 700; margin-bottom: 8px;">Share Your Experience</div>
+                                <div style="font-size: 15px; color: #6B7280;">Help others in your community</div>
+                            </div>
+
+                            <div class="input-group">
+                                <label class="input-label">What are you most excited or nervous about?</label>
+                                <textarea class="input-field" rows="5" placeholder="e.g., I'm excited to experience a new culture but nervous about the weather and finding friends..."></textarea>
+                            </div>
+
+                            <button class="btn btn-primary" style="margin-top: 24px;">Complete Profile</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Success Screen -->
+            <div>
+                <div class="screen-title">Onboarding Complete!</div>
+                <div class="phone-frame">
+                    <div class="phone-notch"></div>
+                    <div class="screen">
+                        <div class="status-bar">
+                            <span>9:41</span>
+                            <span>● ● ●</span>
+                        </div>
+                        <div class="screen-content" style="display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center;">
+                            <div class="illustration-placeholder">
+                                🎉
+                            </div>
+                            <div class="placeholder-text">Success Illustration Here</div>
+
+                            <div style="font-size: 32px; font-weight: 700; margin-bottom: 12px; margin-top: 24px;">Welcome to Jakaranda!</div>
+                            <div style="font-size: 16px; color: #6B7280; margin-bottom: 48px; line-height: 1.6;">
+                                Your profile is complete. Start exploring your community and connecting with students from Zimbabwe.
+                            </div>
+
+                            <button class="btn btn-primary">Explore Jakaranda</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- HOME SCREEN -->
+        <div class="section-header">
+            <h2>Home Screen</h2>
+            <p>Daily tip, countdown, questions feed, horizontal people scroll</p>
+        </div>
+
+        <div class="mockup-grid">
+            <div>
+                <div class="screen-title">Home Screen</div>
+                <div class="phone-frame">
+                    <div class="phone-notch"></div>
+                    <div class="screen">
+                        <div class="status-bar">
+                            <span>9:41</span>
+                            <span>● ● ●</span>
+                        </div>
+                        <div class="screen-content screen-padding">
+                            <div style="margin-bottom: 24px;">
+                                <div style="font-size: 28px; font-weight: 700; margin-bottom: 4px;">Welcome back, Dudu!</div>
+                                <div style="font-size: 15px; color: #6B7280;">Thursday, January 1</div>
+                            </div>
+
+                            <div class="countdown-card">
+                                <div class="countdown-label">Days until you leave</div>
+                                <div class="countdown-number">257</div>
+                                <div class="countdown-unit">days to go</div>
+                            </div>
+
+                            <div class="daily-tip">
+                                <div class="tip-icon">💡</div>
+                                <div style="flex: 1;">
+                                    <div class="tip-label">DAILY TIP</div>
+                                    <div class="tip-text">Start your university email early - many student discounts require it!</div>
+                                </div>
+                            </div>
+
+                            <div class="section-header-inline">
+                                <div class="section-title">New Questions</div>
+                                <div class="see-all">See all</div>
+                            </div>
+
+                            <div class="card">
+                                <div style="display: flex; justify-content: space-between; align-items: start; margin-bottom: 8px;">
+                                    <div class="card-title">Best areas to live in Manchester?</div>
+                                    <div style="font-size: 13px; color: #9CA3AF;">2h</div>
+                                </div>
+                                <div class="card-text">Looking for student-friendly neighborhoods...</div>
+                                <div class="card-meta">
+                                    <span>🏠 Housing</span>
+                                    <span>•</span>
+                                    <span>12 answers</span>
+                                </div>
+                            </div>
+
+                            <div class="card">
+                                <div style="display: flex; justify-content: space-between; align-items: start; margin-bottom: 8px;">
+                                    <div class="card-title">Weekly grocery budget?</div>
+                                    <div style="font-size: 13px; color: #9CA3AF;">5h</div>
+                                </div>
+                                <div class="card-text">Trying to budget for food costs...</div>
+                                <div class="card-meta">
+                                    <span>💰 Cost of Living</span>
+                                    <span>•</span>
+                                    <span>8 answers</span>
+                                </div>
+                            </div>
+
+                            <div class="section-header-inline" style="margin-top: 24px;">
+                                <div class="section-title">People Near You</div>
+                                <div class="see-all">See all</div>
+                            </div>
+
+                            <div class="horizontal-scroll">
+                                <div class="horizontal-card">
+                                    <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 12px;">
+                                        <div class="discovery-avatar" style="width: 48px; height: 48px; font-size: 20px;">T</div>
+                                        <div>
+                                            <div style="font-size: 16px; font-weight: 600; margin-bottom: 2px;">Tafadzwa M.</div>
+                                            <div style="font-size: 13px; color: #6B7280;">2nd Year</div>
+                                        </div>
+                                    </div>
+                                    <div style="display: flex; align-items: center; gap: 4px; font-size: 14px; margin-bottom: 12px;">
+                                        <span>🇿🇼</span>
+                                        <span style="color: #9CA3AF;">→</span>
+                                        <span>🇬🇧</span>
+                                    </div>
+                                    <div class="tags">
+                                        <span class="tag highlight">⚽ Football</span>
+                                        <span class="tag">💻 Tech</span>
+                                    </div>
+                                </div>
+
+                                <div class="horizontal-card">
+                                    <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 12px;">
+                                        <div class="discovery-avatar" style="width: 48px; height: 48px; font-size: 20px; background: linear-gradient(135deg, #F59E0B 0%, #FBBF24 100%);">K</div>
+                                        <div>
+                                            <div style="font-size: 16px; font-weight: 600; margin-bottom: 2px;">Kudzi S.</div>
+                                            <div style="font-size: 13px; color: #6B7280;">1st Year</div>
+                                        </div>
+                                    </div>
+                                    <div style="display: flex; align-items: center; gap: 4px; font-size: 14px; margin-bottom: 12px;">
+                                        <span>🇿🇼</span>
+                                        <span style="color: #9CA3AF;">→</span>
+                                        <span>🇬🇧</span>
+                                    </div>
+                                    <div class="tags">
+                                        <span class="tag">📚 Reading</span>
+                                        <span class="tag">🎵 Music</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="bottom-nav">
+                            <div class="nav-item active">
+                                <svg class="nav-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
+                                </svg>
+                                <div class="nav-label">Home</div>
+                            </div>
+                            <div class="nav-item">
+                                <svg class="nav-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <circle cx="12" cy="12" r="10"/>
+                                    <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/>
+                                </svg>
+                                <div class="nav-label">Questions</div>
+                            </div>
+                            <div class="nav-item">
+                                <svg class="nav-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/>
+                                    <circle cx="9" cy="7" r="4"/>
+                                </svg>
+                                <div class="nav-label">People</div>
+                            </div>
+                            <div class="nav-item">
+                                <svg class="nav-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+                                    <circle cx="9" cy="7" r="4"/>
+                                </svg>
+                                <div class="nav-label">Groups</div>
+                            </div>
+                            <div class="nav-item">
+                                <svg class="nav-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/>
+                                    <circle cx="12" cy="7" r="4"/>
+                                </svg>
+                                <div class="nav-label">Profile</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Note about remaining screens -->
+        <div class="section-header">
+            <h2>Additional Screens</h2>
+            <p>I have the Questions Feed, Discovery, Groups, and Map View screens designed as well. This HTML file is getting large. Would you like me to create a separate file for those, or are you ready to approve and start development?</p>
+        </div>
+    </div>
+</body>
+</html>
